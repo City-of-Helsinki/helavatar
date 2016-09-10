@@ -1,0 +1,10 @@
+*~
+*.mo
+__pycache__
+/.django_secret
+/local_settings.py
+db.sqlite3
+/media
+/static
+/components
+node_modules/
