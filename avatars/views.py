@@ -28,7 +28,9 @@ def avatar_view(request, email_hash=None, email=None, ext=None):
         except Avatar.DoesNotExist:
             avatar = Avatar(email=email)
             avatar.set_hash()
-            avatar.update_image()
+
+    if avatar.should_update():
+        avatar.update_image()
 
     image = avatar.image
     if not image:
@@ -39,8 +41,3 @@ def avatar_view(request, email_hash=None, email=None, ext=None):
     response = HttpResponse(content_type='image/jpeg')
     response.write(image.storage.open(image.name, 'rb').read())
     return response
-
-
-@require_POST
-def register_email_view(request, email):
-    return HttpResponse(email)

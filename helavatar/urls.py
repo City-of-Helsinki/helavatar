@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url
-from avatars.views import avatar_view, register_email_view
+from avatars.views import avatar_view
 from django.conf.urls.static import static
 
 EMAIL_REGEXP = r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+"
@@ -23,5 +23,4 @@ EMAIL_REGEXP = r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+"
 urlpatterns = [
     url(r'^(?P<email_hash>[a-f0-9]{32})(\.(?P<ext>[a-zA-Z]+))?$', avatar_view),
     url(r'^(?P<email>' + EMAIL_REGEXP + r')(\.(?P<ext>[a-zA-Z]+))?$', avatar_view),
-    url(r'^email/' + EMAIL_REGEXP + '$', register_email_view)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

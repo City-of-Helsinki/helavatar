@@ -1,5 +1,7 @@
 import hashlib
 import requests
+import pytz
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import models
@@ -20,7 +22,7 @@ def avatar_image_path(instance, filename):
 class Avatar(models.Model):
     email = models.EmailField(db_index=True, unique=True)
     email_hash = models.CharField(max_length=128, db_index=True, unique=True)
-    last_updated = models.DateTimeField(auto_now=True)
+    last_updated = models.DateTimeField(null=True, blank=True)
     image = VersatileImageField(upload_to=avatar_image_path, null=True, blank=True,
                                 storage=FileOverwriteStorage())
 
@@ -51,10 +53,29 @@ class Avatar(models.Model):
 
         return ret.content
 
+    def should_update(self):
+        if not self.last_updated:
+            return True
+        # Try to update avatars without images more frequently
+        if not self.image:
+            max_age = 24
+        else:
+            max_age = 5 * 24
+        now = datetime.now(pytz.utc)
+        if now - self.last_updated > timedelta(hours=max_age):
+            return True
+        return False
+
     def update_image(self):
         content = self.fetch_exchange_image()
         if not content:
             content = self.fetch_gravatar_image()
-        if not content:
-            return None  # FIXME: placeholder
-        self.image.save('', ContentFile(content))
+        self.last_updated = datetime.now(pytz.utc)
+        if content:
+            self.image.save('', ContentFile(content), save=False)
+        else:
+            if self.image is not None:
+                self.image.delete_all_created_images()
+                self.image.delete()
+            self.image = None
+        self.save()

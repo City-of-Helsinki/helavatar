@@ -11,6 +11,7 @@ first==2.0.1              # via pip-tools
 Pillow==3.3.1             # via django-versatileimagefield
 pip-tools==1.7.0
 python-ntlm3==1.0.2       # via requests-ntlm
+pytz==2016.6.1
 requests-ntlm==0.3.0
 requests==2.11.1
 six==1.10.0               # via pip-tools, python-ntlm3
