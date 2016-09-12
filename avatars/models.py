@@ -74,7 +74,7 @@ class Avatar(models.Model):
         if content:
             self.image.save('', ContentFile(content), save=False)
         else:
-            if self.image is not None:
+            if self.image != None:
                 self.image.delete_all_created_images()
                 self.image.delete()
             self.image = None
