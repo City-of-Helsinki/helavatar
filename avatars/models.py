@@ -7,8 +7,9 @@ from django.conf import settings
 from django.db import models
 from django.core.files.base import ContentFile
 from requests_ntlm import HttpNtlmAuth
-from versatileimagefield.fields import VersatileImageField
 from .storage import FileOverwriteStorage
+from sorl.thumbnail import ImageField
+
 
 GRAVATAR_SIZE = 400
 
@@ -23,8 +24,8 @@ class Avatar(models.Model):
     email = models.EmailField(db_index=True, unique=True)
     email_hash = models.CharField(max_length=128, db_index=True, unique=True)
     last_updated = models.DateTimeField(null=True, blank=True)
-    image = VersatileImageField(upload_to=avatar_image_path, null=True, blank=True,
-                                storage=FileOverwriteStorage())
+    image = ImageField(upload_to=avatar_image_path, null=True, blank=True,
+                       storage=FileOverwriteStorage())
 
     def __str__(self):
         return "Avatar for {} ({})".format(self.email, self.email_hash)

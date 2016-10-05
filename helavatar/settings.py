@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
-    'versatileimagefield',
+    'sorl.thumbnail',
     'avatars'
 ]
 

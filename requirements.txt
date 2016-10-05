@@ -5,13 +5,12 @@
 #    pip-compile --output-file requirements.txt requirements.in
 #
 click==6.6                # via pip-tools
-django-versatileimagefield==1.6
-Django==1.10.1
+Django==1.10.2
 first==2.0.1              # via pip-tools
-Pillow==3.3.1             # via django-versatileimagefield
 pip-tools==1.7.0
 python-ntlm3==1.0.2       # via requests-ntlm
-pytz==2016.6.1
+pytz==2016.7
 requests-ntlm==0.3.0
 requests==2.11.1
 six==1.10.0               # via pip-tools, python-ntlm3
+sorl-thumbnail==12.4a1

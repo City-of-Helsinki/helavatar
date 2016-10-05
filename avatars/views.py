@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST
-
+from sorl.thumbnail.shortcuts import get_thumbnail
 from .models import Avatar
 
 
@@ -36,7 +36,7 @@ def avatar_view(request, email_hash=None, email=None, ext=None):
     if not image:
         return placeholder_response(size=size, email_hash=avatar.email_hash)
 
-    image = image.thumbnail['{size}x{size}'.format(size=size)]
+    image = get_thumbnail(image, '{size}x{size}'.format(size=size))
 
     response = HttpResponse(content_type='image/jpeg')
     response.write(image.storage.open(image.name, 'rb').read())

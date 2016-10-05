@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 import avatars.models
 import avatars.storage
 from django.db import migrations, models
-import versatileimagefield.fields
+import sorl.thumbnail.fields
 
 
 class Migration(migrations.Migration):
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(db_index=True, max_length=254, unique=True)),
                 ('email_hash', models.CharField(db_index=True, max_length=128, unique=True)),
                 ('last_updated', models.DateTimeField(auto_now=True)),
-                ('image', versatileimagefield.fields.VersatileImageField(blank=True, null=True, storage=avatars.storage.FileOverwriteStorage(), upload_to=avatars.models.avatar_image_path)),
+                ('image', sorl.thumbnail.fields.ImageField(blank=True, null=True, storage=avatars.storage.FileOverwriteStorage(), upload_to=avatars.models.avatar_image_path)),
             ],
         ),
     ]

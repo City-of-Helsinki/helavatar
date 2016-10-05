@@ -2,5 +2,5 @@ Django
 requests
 pip-tools
 requests_ntlm
-django-versatileimagefield
 pytz
+sorl_thumbnail
