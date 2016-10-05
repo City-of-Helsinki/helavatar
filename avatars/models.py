@@ -9,7 +9,8 @@ from django.core.files.base import ContentFile
 from requests_ntlm import HttpNtlmAuth
 from .storage import FileOverwriteStorage
 from sorl.thumbnail import ImageField
-
+from sorl.thumbnail.images import ImageFile
+from sorl.thumbnail import default as thumbnail_backend
 
 GRAVATAR_SIZE = 400
 
@@ -72,11 +73,25 @@ class Avatar(models.Model):
         if not content:
             content = self.fetch_gravatar_image()
         self.last_updated = datetime.now(pytz.utc)
+        if self.image:
+            try:
+                self.image.open()
+                old_content = self.image.read()
+                if content and old_content == content:
+                    return
+            except FileNotFoundError:
+                pass
+
+            image_file = ImageFile(self.image)
+        else:
+            image_file = None
+
         if content:
             self.image.save('', ContentFile(content), save=False)
         else:
-            if self.image != None:
-                self.image.delete_all_created_images()
-                self.image.delete()
             self.image = None
+
+        if image_file:
+            thumbnail_backend.kvstore.delete_thumbnails(image_file)
+
         self.save()
