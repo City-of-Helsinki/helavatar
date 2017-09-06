@@ -1,12 +1,15 @@
 Helavatar - API for fetching Exchange & Gravatar avatars
 ========================================================
+[![Requirements](https://requires.io/github/City-of-Helsinki/helavatar/requirements.svg?branch=master)](https://requires.io/github/City-of-Helsinki/helavatar/requirements/?branch=master)
+
 
 Helavatar is a service and API returning avatar images based on e-mail
 address. Its initial purpose was to provide mugshots for galleries such as
 the one on digi.hel.fi.
 
 Helavatar requires access credentials to an instance of Exchange EWS. In
-addition to Exchange, helavatar also looks at gravatar for images.
+addition to Exchange, helavatar also looks at Gravatar for images. If no
+image is found, Gravatar is used to generate a placeholder.
 
 Using the API
 -------------
@@ -19,8 +22,9 @@ example:
 https://api.hel.fi/avatar/juha.yrjola@hel.fi?s=240
 ```
 
-$AVATAR_SIZE is the width & heigth of the wanted image. Helavatar will scale
-the image for you. Results depend on the source image.
+$AVATAR_SIZE is the width & heigth of the wanted image, they are always
+square. Helavatar will scale the image for you. Results depend on the
+source image.
 
 Quick install
 -------------
@@ -44,7 +48,7 @@ Install required Python packages into the virtualenv
 cd $INSTALL_BASE
 pip install -r requirements.txt
 ```
-Create the database, like so: (we have only tested on PostgreSQL)
+Create the database, like so: (we run PostGRESQL usually)
 ```bash
 cd $INSTALL_BASE/linkedevents
 sudo -u postgres createuser -R -S helavatar
