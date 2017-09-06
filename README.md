@@ -65,11 +65,12 @@ EXCHANGE_URL = 'https://your.domain/ews'
 ```
 
 For cleanliness we recommend moving Django media directory out from the
-source tree (replace $HOME with appropriate directory):
+source tree (again in local_settings.py):
 ```
 MEDIA_ROOT = '$HOME/media'
 MEDIA_URL = '/media/'
 ```
+Replace $HOME with the actual path
 
 Afterwards you can run the Django development server for testing:
 ```
