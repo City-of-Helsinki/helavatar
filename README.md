@@ -1,5 +1,5 @@
-Helavatar - API & Service Exchange & Gravatar images
-====================================================
+Helavatar - API for fetching Exchange & Gravatar avatars
+========================================================
 
 Helavatar is a service and API returning avatar images based on e-mail
 address. Its initial purpose was to provide mugshots for galleries such as
