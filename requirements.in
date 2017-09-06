@@ -1,6 +1,8 @@
 Django
+Pillow # for ImageField
 requests
 pip-tools
 requests_ntlm
 pytz
-sorl_thumbnail
+# 12.3 does not include migrations
+sorl_thumbnail==12.4a1
