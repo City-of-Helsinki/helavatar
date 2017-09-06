@@ -19,5 +19,5 @@ pytz==2017.2
 requests-ntlm==1.0.0
 requests==2.18.4
 six==1.10.0               # via ntlm-auth, pip-tools
-sorl-thumbnail==12.3
+sorl_thumbnail==12.4a1
 urllib3==1.22             # via requests
