@@ -5,7 +5,7 @@ Helavatar is a service and API returning avatar images based on e-mail
 address. Its initial purpose was to provide mugshots for galleries such as
 the one on digi.hel.fi.
 
-Helavatr requires access credentials to an instance of Exchange EWS. In
+Helavatar requires access credentials to an instance of Exchange EWS. In
 addition to Exchange, helavatar also looks at gravatar for images.
 
 Using the API
