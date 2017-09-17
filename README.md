@@ -26,8 +26,8 @@ $AVATAR_SIZE is the width & heigth of the wanted image, they are always
 square. Helavatar will scale the image for you. Results depend on the
 source image.
 
-Quick install
--------------
+Installation
+------------
 
 These instructions assume an $INSTALL_BASE, like so:
 ```bash
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 ```
 Create the database, like so: (we run PostGRESQL usually)
 ```bash
-cd $INSTALL_BASE/linkedevents
+cd $INSTALL_BASE/helavatar
 sudo -u postgres createuser -R -S helavatar
 # Following is for US locale, helavatar should not behave differently
 # depending on locale
