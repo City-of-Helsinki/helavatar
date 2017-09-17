@@ -36,7 +36,7 @@ INSTALL_BASE=$HOME/helavatar
 If you've already cloned this repository, just move repository root into
 $INSTALL_BASE. Otherwise just clone the repository, like so:
 ```bash
-git clone https://github.com/City-of-Helsinki/linkedevents.git $INSTALL_BASE
+git clone https://github.com/City-of-Helsinki/helavatar.git $INSTALL_BASE
 ```
 Prepare Python 3.x virtualenv using your favorite tools and activate it. Plain virtualenv is like so:
 ```bash
@@ -54,7 +54,7 @@ cd $INSTALL_BASE/helavatar
 sudo -u postgres createuser -R -S helavatar
 # Following is for US locale, helavatar should not behave differently
 # depending on locale
-#sudo -u postgres createdb -Olinkedevents linkedevents
+#sudo -u postgres createdb -Ohelavatar helavatar
 # This is is for Finnish locale
 sudo -u postgres createdb -Ohelavatar -Ttemplate0 -lfi_FI.UTF-8 helavatar
 # This fills the database with a basic skeleton
@@ -87,6 +87,7 @@ Running in production
 ---------------------
 Development installation above will give you quite a serviceable production
 installation for lightish usage. You can serve out the application using your
-favorite WSGI-capable application server. The WSGI-entrypoint for Linked
-Events is ```helavatar.wsgi``` or in file ```helavatar/wsgi.py```. Former is
-used by gunicorn, latter by uwsgi. The callable is ```application```.
+favorite WSGI-capable application server. The WSGI-entrypoint for Helavatar
+is ```helavatar.wsgi``` or in file ```helavatar/wsgi.py```. Former is
+used by gunicorn, latter by uwsgi. The callable is ```application``` as per
+WSGI standard.
