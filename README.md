@@ -26,6 +26,14 @@ $AVATAR_SIZE is the width & heigth of the wanted image, they are always
 square. Helavatar will scale the image for you. Results depend on the
 source image.
 
+About the project
+-----------------
+Helavatar is (as of 22.09.2017) maintained by Open Software Group at City of
+Helsinki. See https://dev.hel.fi/ for current contact information.
+
+Helavatar is maintained on best effort basis, depending if any budgeted
+projects need avatar services.
+
 Installation
 ------------
 
