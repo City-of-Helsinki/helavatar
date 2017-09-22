@@ -19,7 +19,7 @@ http://$YOUR_SERVER/$EMAIL_ADDRESS?s=$AVATAR_SIZE
 ```
 example:
 ```
-https://api.hel.fi/avatar/juha.yrjola@hel.fi?s=240
+https://api.hel.fi/avatar/67d8070f51677c5e43033edee846fd24?s=240
 ```
 
 $AVATAR_SIZE is the width & heigth of the wanted image, they are always
