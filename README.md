@@ -17,6 +17,10 @@ The API is dead simple. Just fetch an avatar using an email-address:
 ```
 http://$YOUR_SERVER/$EMAIL_ADDRESS?s=$AVATAR_SIZE
 ```
+or [Gravatar hash](https://fi.gravatar.com/site/implement/hash/)
+```
+http://$YOUR_SERVER/$GRAVATAR_HASH?s=$AVATAR_SIZE
+```
 example:
 ```
 https://api.hel.fi/avatar/67d8070f51677c5e43033edee846fd24?s=240
