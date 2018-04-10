@@ -32,11 +32,11 @@ source image.
 
 About the project
 -----------------
-Helavatar is (as of 22.09.2017) maintained by Open Software Group at City of
-Helsinki. See https://dev.hel.fi/ for current contact information.
+Helavatar is (as of 10.04.2018) maintained by Software Development Subteam
+at City of Helsinki. See https://dev.hel.fi/ for current contact information.
 
-Helavatar is maintained on best effort basis, depending if any budgeted
-projects need avatar services.
+Helavatar is maintained on best effort basis, with updates mostly happening
+if any budgeted projects require changes to helavatar.
 
 Installation
 ------------
