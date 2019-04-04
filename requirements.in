@@ -1,8 +1,6 @@
 Django
 Pillow # for ImageField
 requests
-pip-tools
-requests_ntlm
+requests_ntlm # For talking to Exchange API
 pytz
-# 12.3 does not include migrations
-sorl_thumbnail==12.4a1
+sorl_thumbnail
