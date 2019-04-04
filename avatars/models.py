@@ -85,22 +85,22 @@ class Avatar(models.Model):
                 old_content = self.image.read()
                 if content and old_content == content:
                     return
-            except FileNotFoundError:
-                pass
-
+            except FileNotFoundError as e:
+                logger.warning(f"Cached avatar image not found. Error: {e}")
+            # Used only as trigger and key for thumbnail deletion below
             image_file = ImageFile(self.image)
         else:
             # We do not want to overwrite cached image with gravatar
-            # but only use if nothing else is available
+            # but only use it if nothing else is available
             if not content:
                 content = self.fetch_gravatar_image()
             image_file = None
 
+        # We have updated content, save it
         if content:
             self.image.save('', ContentFile(content), save=False)
-        else:
-            self.image = None
 
+        # Updated image was loaded from exchange, delete thumbnails
         if image_file:
             thumbnail_backend.kvstore.delete_thumbnails(image_file)
 
