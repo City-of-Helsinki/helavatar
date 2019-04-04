@@ -14,7 +14,6 @@ ntlm-auth==1.0.5          # via requests-ntlm
 olefile==0.44             # via pillow
 ordereddict==1.1          # via ntlm-auth
 pillow==4.2.1
-pip-tools==1.9.0
 pytz==2017.2
 requests-ntlm==1.0.0
 requests==2.18.4
