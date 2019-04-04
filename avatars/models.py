@@ -1,6 +1,7 @@
 import hashlib
 import requests
 import pytz
+import logging
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -14,6 +15,7 @@ from sorl.thumbnail import default as thumbnail_backend
 
 GRAVATAR_SIZE = 400
 
+logger = logging.getLogger(__name__)
 
 def avatar_image_path(instance, filename):
     s = instance.email_hash
@@ -40,9 +42,15 @@ class Avatar(models.Model):
     def fetch_exchange_image(self):
         auth = HttpNtlmAuth(settings.EXCHANGE_USERNAME, settings.EXCHANGE_PASSWORD)
         url = '{base}/Exchange.asmx/s/GetUserPhoto'.format(base=settings.EXCHANGE_URL)
-        ret = requests.get('{url}?email={email}&size=HR360x360'.format(url=url, email=self.email),
-                           auth=auth)
+        try:
+            ret = requests.get('{url}?email={email}&size=HR360x360'.format(url=url, email=self.email),
+                            auth=auth)
+        except requests.exceptions.ConnectionError as err:
+            logger.warning(f"Error during fetching user photo from Exchange: {err}")
+            return None
+
         if ret.status_code != 200:
+            logger.warning(f"Non-successful status_code while fetching from Exchange: {ret.status_code} : {ret.content}")
             return None
 
         return ret.content
@@ -70,8 +78,6 @@ class Avatar(models.Model):
 
     def update_image(self):
         content = self.fetch_exchange_image()
-        if not content:
-            content = self.fetch_gravatar_image()
         self.last_updated = datetime.now(pytz.utc)
         if self.image:
             try:
@@ -84,6 +90,10 @@ class Avatar(models.Model):
 
             image_file = ImageFile(self.image)
         else:
+            # We do not want to overwrite cached image with gravatar
+            # but only use if nothing else is available
+            if not content:
+                content = self.fetch_gravatar_image()
             image_file = None
 
         if content:
