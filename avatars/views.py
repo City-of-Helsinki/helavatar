@@ -1,25 +1,32 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.decorators.http import require_POST
 from sorl.thumbnail.shortcuts import get_thumbnail
 from .models import Avatar
 
 
 def placeholder_response(size, email_hash):
-    url = 'https://www.gravatar.com/avatar/{email_hash}?f=y&s={size}&d=retro'.format(
+    url = 'https://www.gravatar.com/avatar/{email_hash}?f=y&s={size}&d=mp'.format(
         size=size, email_hash=email_hash)
     return HttpResponseRedirect(url)
 
 
 def avatar_view(request, email_hash=None, email=None, ext=None):
     try:
-        size = request.GET.get('s', 80)
+        size = int(request.GET.get('s', 80))
     except ValueError:
         return HttpResponse(status=400)
+
+    default = request.GET.get('d', '').strip()
+    if default:
+        # Only 404 suported for now
+        if default not in ('404',):
+            return HttpResponse(status=400)
 
     if email_hash:
         try:
             avatar = Avatar.objects.get(email_hash=email_hash)
         except Avatar.DoesNotExist:
+            if default == '404':
+                return HttpResponse(status=404)
             return placeholder_response(size=size, email_hash=email_hash)
     else:
         email = email.strip().lower()
