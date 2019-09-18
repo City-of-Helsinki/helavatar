@@ -5,7 +5,7 @@ from .models import Avatar
 
 
 def placeholder_response(size, email_hash):
-    url = 'https://www.gravatar.com/avatar/{email_hash}?f=y&s={size}&d=retro'.format(
+    url = 'https://www.gravatar.com/avatar/{email_hash}?f=y&s={size}&d=mp'.format(
         size=size, email_hash=email_hash)
     return HttpResponseRedirect(url)
 
