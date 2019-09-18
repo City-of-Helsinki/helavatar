@@ -1,5 +1,4 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.decorators.http import require_POST
 from sorl.thumbnail.shortcuts import get_thumbnail
 from .models import Avatar
 
