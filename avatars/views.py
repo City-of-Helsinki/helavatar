@@ -41,6 +41,8 @@ def avatar_view(request, email_hash=None, email=None, ext=None):
 
     image = avatar.image
     if not image:
+        if default == '404':
+            return HttpResponse(status=404)
         return placeholder_response(size=size, email_hash=avatar.email_hash)
 
     image = get_thumbnail(image, '{size}x{size}'.format(size=size))
