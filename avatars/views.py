@@ -16,10 +16,18 @@ def avatar_view(request, email_hash=None, email=None, ext=None):
     except ValueError:
         return HttpResponse(status=400)
 
+    default = request.GET.get('d', '').strip()
+    if default:
+        # Only 404 suported for now
+        if default not in ('404',):
+            return HttpResponse(status=400)
+
     if email_hash:
         try:
             avatar = Avatar.objects.get(email_hash=email_hash)
         except Avatar.DoesNotExist:
+            if default == '404':
+                return HttpResponse(status=404)
             return placeholder_response(size=size, email_hash=email_hash)
     else:
         email = email.strip().lower()
