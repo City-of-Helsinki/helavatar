@@ -12,7 +12,7 @@ def placeholder_response(size, email_hash):
 
 def avatar_view(request, email_hash=None, email=None, ext=None):
     try:
-        size = request.GET.get('s', 80)
+        size = int(request.GET.get('s', 80))
     except ValueError:
         return HttpResponse(status=400)
 
