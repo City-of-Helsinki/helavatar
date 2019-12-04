@@ -9,7 +9,7 @@ certifi==2019.9.11        # via requests
 cffi==1.12.3              # via cryptography
 chardet==3.0.4            # via requests
 cryptography==2.7         # via requests-ntlm
-django==2.2.5
+django==2.2.8
 idna==2.8                 # via requests
 ntlm-auth==1.4.0          # via requests-ntlm
 pillow==6.1.0
