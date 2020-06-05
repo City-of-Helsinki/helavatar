@@ -9,15 +9,15 @@ certifi==2019.9.11        # via requests
 cffi==1.12.3              # via cryptography
 chardet==3.0.4            # via requests
 cryptography==2.7         # via requests-ntlm
-django==2.2.5
+django==2.2.13            # via -r requirements.in
 idna==2.8                 # via requests
 ntlm-auth==1.4.0          # via requests-ntlm
-pillow==6.1.0
+pillow==6.1.0             # via -r requirements.in
 pycparser==2.19           # via cffi
-pytz==2019.2
-requests-ntlm==1.1.0
-requests==2.22.0
+pytz==2019.2              # via -r requirements.in, django
+requests-ntlm==1.1.0      # via -r requirements.in
+requests==2.22.0          # via -r requirements.in, requests-ntlm
 six==1.12.0               # via cryptography
-sorl-thumbnail==12.5.0
+sorl-thumbnail==12.5.0    # via -r requirements.in
 sqlparse==0.3.0           # via django
 urllib3==1.25.3           # via requests
