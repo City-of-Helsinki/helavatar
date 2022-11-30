@@ -63,6 +63,9 @@ pip install -r requirements.txt
 Create the database, like so: (we run PostGRESQL usually)
 ```bash
 cd $INSTALL_BASE/helavatar
+# Install Python postgres-module
+pip install -r postgres-requirements.txt
+# Create postgres user for helavatar
 sudo -u postgres createuser -R -S helavatar
 # Following is for US locale, helavatar should not behave differently
 # depending on locale
